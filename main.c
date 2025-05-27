@@ -66,7 +66,7 @@ int main() {
             break;
         }
 
-        printf("response: %s\n", buffer);
+        printf("[[server]]%s\n", buffer);
     }
 
     close(socketFD);
