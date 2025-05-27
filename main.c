@@ -7,6 +7,11 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KBLU  "\x1B[34m"
+
+
 int openSocket(char*, int);
 int createIPv4Socket();
 struct sockaddr_in* createIPv4Address(char* ip, int port);
@@ -41,7 +46,7 @@ int main() {
     char* line = NULL;
     size_t lineSize = 0;
     while (true) {
-        printf("escriba su expresión ('exit' para salir): ");
+        printf("%s[+] Escriba su expresión ('exit' para salir): ", KGRN);
         ssize_t charCount = getline(&line, &lineSize, stdin);
         if (charCount == -1) {
             perror("[-] error while reading from stdin - closing socket\n");
@@ -66,7 +71,7 @@ int main() {
             break;
         }
 
-        printf("[[server]]%s\n", buffer);
+        printf("%s[server] %s\n\n", KBLU,buffer);
     }
 
     close(socketFD);
