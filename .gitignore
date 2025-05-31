@@ -53,3 +53,12 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+#CMake
+.cmake
+CMakeCache.txt
+CMakeFiles
+Makefile
+Testing
+client
+cmake_install.cmake
