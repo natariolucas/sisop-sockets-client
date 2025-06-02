@@ -65,6 +65,8 @@ int main() {
         }
 
         char buffer[1024];
+        buffer[0] = '\0';
+
         ssize_t charCountReceived = recv(socketFD, buffer, sizeof(buffer), 0);
         if (charCountReceived <= 0) {
             printf("%s[-]error while receiving response - server closed the connection\n",KRED);
@@ -72,7 +74,6 @@ int main() {
         }
 
         printf("%s[server] %s\n\n", KBLU,buffer);
-        buffer[0] = '\0';
     }
 
     close(socketFD);
