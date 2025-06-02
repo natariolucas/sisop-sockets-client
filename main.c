@@ -60,18 +60,19 @@ int main() {
 
         ssize_t charCountSent = send(socketFD, line, lineSize, 0);
         if (charCountSent == -1) {
-            perror("[-] error while sending message - retry please\n");
+            printf("%s[-] error while sending message - retry please\n",KRED);
             break;
         }
 
         char buffer[1024];
         ssize_t charCountReceived = recv(socketFD, buffer, sizeof(buffer), 0);
-        if (charCountReceived == -1) {
-            perror("[-]error while receiving response - closing socket\n");
+        if (charCountReceived <= 0) {
+            printf("%s[-]error while receiving response - server closed the connection\n",KRED);
             break;
         }
 
         printf("%s[server] %s\n\n", KBLU,buffer);
+        buffer[0] = '\0';
     }
 
     close(socketFD);
